@@ -1,7 +1,5 @@
 <?php
-
 //This code requests all of your projects and their details in JSON format
-
 
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 		$API_key = "API_KEY_HERE";
@@ -14,7 +12,7 @@
 			CURLOPT_RETURNTRANSFER => true
 		);
 
-		$ch = curl_init($requestUrl);
+		$ch = curl_init($requestURL);
 		curl_setopt_array($ch, $options);
 
 		$json_content = curl_exec($ch);
