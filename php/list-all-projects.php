@@ -4,7 +4,9 @@
 // This code requests all of your projects and outputs their ID, names, amount of keywords,
 // and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
 //
-// Last updated - Aug 15th, 2017 @ 12:58 PM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// This output is HTML code
+//
+// Last updated - Aug 15th, 2017 @ 15:11 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //
 
