@@ -1,3 +1,5 @@
+![SERPWoo API Sample Code](https://www.serpwoo.com/img/site/logo-oct-2016-mobile.png)
+
 # SERPWoo API Sample Code
 
 Welcome to SERPWoo's API sample code. You can find instructions on how to use SERPWoo's API at the official API docs: https://api.serpwoo.com/
