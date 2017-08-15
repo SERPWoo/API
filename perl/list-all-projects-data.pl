@@ -3,7 +3,7 @@
 #
 # This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 15th, 2017 @ 13:43 AM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 15th, 2017 @ 13:43 PM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 
 	use strict;
