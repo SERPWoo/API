@@ -2,7 +2,7 @@
 
 Welcome to SERPWoo's API sample code. You can find instructions on how to use SERPWoo's API at the official API docs: https://api.serpwoo.com/
 
-We're creating a repository of same code so to help users jump start using SERPWoo's API to control their projects, keywords, and view their SERP results for each keyword.
+We're creating a repository of sample code so to help users jump start using SERPWoo's API to control their projects, keywords, and view their SERP results for each keyword.
 
 --
 
