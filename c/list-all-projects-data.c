@@ -7,6 +7,7 @@
 // You might need to install curl: apt-get install libcurl4-openssl-dev
 //
 /* Compile Command: gcc -ansi -pedantic -Wall -Werror -lm -std=gnu99 -o list-all-projects-data list-all-projects-data.c -lcurl */
+/* Run Command: ./list-all-projects-data */
 
 #include <stdio.h>
 #include <curl/curl.h>
