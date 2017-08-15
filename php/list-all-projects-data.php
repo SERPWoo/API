@@ -23,9 +23,6 @@
 		$json_content = curl_exec($ch);
 		curl_close($ch);
 
-	//outputs data in JSON format
-		header('Content-type: application/json');
-
 	//Print Result
 		print_r($json_content);
 ?>
