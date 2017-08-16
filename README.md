@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/vtGAqTr.gif" alt="SERPWoo - SEO & ORM Analysis">
+  <img src="http://i.imgur.com/GeLrUoK.gif" alt="SERPWoo - SEO & ORM Analysis">
 </p>
 
 # SERPWoo API Sample Code
