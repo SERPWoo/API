@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.imgur.com/vtGAqTr.gif" alt="SERPWoo - SEO & ORM Analysis">
+</p>
+
 # SERPWoo API Sample Code
 
 Welcome to SERPWoo's API sample code. You can find instructions on how to use SERPWoo's API at the official API docs: https://api.serpwoo.com/
