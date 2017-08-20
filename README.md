@@ -17,3 +17,7 @@ SERPWoo specializes in displaying top 20, 30, and 100 results for each keyword f
 If you have any requests for code sample don't hesitate to send us a message here or within our In-App chat within our interface. You can also contact us through Twitter to get a relatively fast response: https://twitter.com/SERPWoo
 
 We ALWAYS respond to users within 24 hours and on average our response time is 33 minutes from most communication channels.
+
+--
+
+Code base last updated Aug 20th, 2017 @ 19:43 EST
