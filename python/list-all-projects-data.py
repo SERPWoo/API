@@ -1,18 +1,21 @@
 #
 # This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 20th, 2017 @ 11:45 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 20th, 2017 @ 19:38 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 
 import requests
+import json
 
-# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
-API_key	= "API_KEY_HERE"
+API_key = 'API_KEY_HERE'
 
 url = 'https://api.serpwoo.com/v1/projects/'
 payload = {'key': API_key}
 
 r = requests.get(url, params=payload)
+
+parsed = json.loads(r.text)
+print json.dumps(parsed, indent=4, sort_keys=True)
 
 # GET
 #r = requests.get(url)
@@ -30,5 +33,4 @@ r = requests.get(url, params=payload)
 #r.text
 #r.status_code
 
-#Print Result
-print r.text
+#    print r.text
