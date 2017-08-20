@@ -2,7 +2,7 @@
 // This code requests all of your projects and outputs their ID, names, amount of keywords,
 // and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
 //
-//  Last updated - Aug 19th, 2017 @ 10:59 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//  Last updated - Aug 20th, 2017 @ 17:58 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // This output is text format
 //
@@ -273,7 +273,8 @@ static void process_value(json_value* value, int depth, char* parentName)
 static void printSingleRow(){
 
     if(printedRowCount == 0) {
-        printf("%-10s%-70s%-20s%-70s\n","Project Id", "Name", "Total Keywords", "Link to Keywords");
+        printf("%-15s%-70s%-20s%-70s\n","Project ID", "Project Name", "Total Keywords", "Link to Keywords");
+        printf("%-15s%-70s%-20s%-70s\n","----------", "------------", "--------------", "----------------");
     }
 
     printedRowCount++;

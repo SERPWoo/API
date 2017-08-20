@@ -3,7 +3,8 @@
 //
 //  Last updated - Aug 15th, 2017 @ 14:08 PM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-
+// This output is JSON Format
+//
 // You might need to install curl: apt-get install libcurl4-openssl-dev
 //
 /* Compile Command: gcc -ansi -pedantic -Wall -Werror -lm -std=gnu99 -o list-all-projects-data list-all-projects-data.c -lcurl */
