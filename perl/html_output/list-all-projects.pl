@@ -1,12 +1,14 @@
 #!/usr/bin/perl -w
 
 #
+# GitHub: https://github.com/SERPWoo/API
+#
 # This code requests all of your projects and outputs their ID, names, amount of keywords,
 # and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
 #
 # This output is HTML code, so it should probably be ran as CGI or something
 #
-# Last updated - Aug 15th, 2017 @ 15:10 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 
 	use strict;

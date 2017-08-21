@@ -1,10 +1,12 @@
 #!/usr/bin/perl -w
-
+#
+# GitHub: https://github.com/SERPWoo/API
 #
 # This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 15th, 2017 @ 10:59 AM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
+# Run Command: perl list-all-projects-data.pl
 
 	use strict;
 	use warnings;
