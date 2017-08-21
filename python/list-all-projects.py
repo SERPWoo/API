@@ -1,11 +1,14 @@
 #
+# GitHub: https://github.com/SERPWoo/API
 #
 # This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 #
 # This output is text format
 #
-# Last updated - Aug 20th, 2017 @ 19:38 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
+# Run Command: python list-all-projects.py
+
 
 import requests, json
 
