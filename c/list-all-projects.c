@@ -1,4 +1,6 @@
 //
+// GitHub: https://github.com/SERPWoo/API
+//
 // This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
 // This output is text format
