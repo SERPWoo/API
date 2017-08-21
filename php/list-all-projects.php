@@ -1,12 +1,13 @@
 <?php
 //
+// GitHub: https://github.com/SERPWoo/API
 //
 // This code requests all of your projects and outputs their ID, names, amount of keywords,
 // and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
 //
 // This output is HTML code
 //
-// Last updated - Aug 15th, 2017 @ 15:11 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //
 

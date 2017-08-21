@@ -1,9 +1,14 @@
 <?php
 //
+// GitHub: https://github.com/SERPWoo/API
+//
 // This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 15th, 2017 @ 12:58 PM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// This output is JSON data
 //
+// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//
+// Run Command: php list-all-projects-data.php
 
 	//outputs data in JSON format
 		header('Content-type: application/json');
