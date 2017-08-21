@@ -1,12 +1,11 @@
 #!/usr/bin/perl -w
 
 #
-# This code requests all of your projects and outputs their ID, names, amount of keywords,
-# and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
+# This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 #
-# This output is HTML code, so it should probably be ran as CGI or something
+# This output is text format
 #
-# Last updated - Aug 15th, 2017 @ 15:10 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 20th, 2017 @ 20:20 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 
 	use strict;
@@ -19,7 +18,6 @@
 	use open ':std', ':encoding(UTF-8)';
 
 	#outputs data in JSON format
-    print "Content-type: text/html\n\n";
 
 		# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 			my $API_key = "API_KEY_HERE";
@@ -32,10 +30,9 @@
 			my $json_content = $res->decoded_content;
 			
 			my $error_occurred = 0;
-			my $link_to_keywords_list_for_project;
+			my $name_of_project;
 			my $total_keywords_in_project;
-
-			html_css_style();
+			my $link_to_keywords_list_for_project;
 
 				eval { %JSON_DATA = %{ decode_json($json_content) }; } or $error_occurred = 1;
 				
@@ -44,37 +41,26 @@
 					# Always check for success = 1
 					if ($JSON_DATA{'success'} == 1){
 
-							print "<table>\n<tr><th>Project ID</th><th>Name</th><th>Total Keywords</th><th>Link to Keywords</th></tr>\n";
+						print "\n--\n";
+
+					    printf "%-15s %-70s %-20s %-70s\n", "Project ID", "Project Name", "Total Keywords", "Link to Keywords";
+					    printf "%-15s %-70s %-20s %-70s\n", "----------", "------------", "--------------", "----------------";
 
 							foreach my $project_id (sort {$a <=> $b} keys %{$JSON_DATA{'projects'}}) {
+
+								$name_of_project = $JSON_DATA{'projects'}{$project_id}{'name'};
+								$link_to_keywords_list_for_project = $JSON_DATA{'projects'}{$project_id}{'_links'}{'keywords'};
+								$total_keywords_in_project = $JSON_DATA{'projects'}{$project_id}{'total'}{'keywords'};
 								
-								foreach my $key (sort {$a cmp $b} keys %{$JSON_DATA{'projects'}{$project_id}}) {
-
-									$link_to_keywords_list_for_project = $JSON_DATA{'projects'}{$project_id}{'_links'}{'keywords'};
-									$total_keywords_in_project = $JSON_DATA{'projects'}{$project_id}{'total'}{'keywords'};
-
-									
-									if ($key eq "name") {
-
-											print "<tr>";
-											print "<td style='text-align: center;'><span style='color: #0099ff;'>" . $project_id . "</span></td>";
-											print "<td style='text-align: left;'><span style='color: #ff0099;'>" . $JSON_DATA{'projects'}{$project_id}{$key} . "</span></td>";
-											print "<td style='text-align: center;'><span style='color: #009900;'>" . $total_keywords_in_project . "</span></td>";
-											print "<td style='text-align: left;'><a href='https://api.serpwoo.com" . $link_to_keywords_list_for_project . "?key=" . $API_key . "'>" . $link_to_keywords_list_for_project . "</a></td>";
-											print "</tr>\n";
-
-										
-									}
-									
-								}
+									    #printf "%-15s %-70s %-20s %-70s\n", $project_id, $name_of_project, $total_keywords_in_project, $link_to_keywords_list_for_project . "?key=" . $API_key;
+									    printf "%-15s %-70s %-20s %-70s\n", $project_id, $name_of_project, $total_keywords_in_project, $link_to_keywords_list_for_project;
 
 							}
 
-							print "</table>\n";
 
 					}else {
 						#Something went wrong, outputs message
-						print "<b style='color: #0099ff;'>Problem. Error:</b> [<b style='color: #ff0000;'>" . $JSON_DATA{'error'} . "</b>]<br>";
+						print "Problem. Error: " . $JSON_DATA{'error'} . "\n";
 					}
 					
 				}else {
@@ -82,47 +68,9 @@
 						#print "$json_content";
 				}
 
-
-	  		  print "\n\t</body></html>\n";
+	  		  print "\n--\n";
 
 
 
 ################################################################################
 ################################################################################
-
-			# Styles this faux html ouput
-			sub html_css_style () {
-
-print "<!DOCTYPE html>
-<!--[if IE 8]> <html lang=\"en\" class=\"ie8\"> <![endif]-->  
-<!--[if IE 9]> <html lang=\"en\" class=\"ie9\"> <![endif]-->  
-<!--[if !IE]><!--> <html lang=\"en\"> <!--<![endif]-->  
-	<head>
-		<title>Untitled Document</title>
-		<meta name=\"robots\" content=\"NOINDEX,NOFOLLOW,NOARCHIVE\">
-			<style type='text/css'>
-				.body {
-					line-height: 1.4em;
-				}
-				td {
-					border: 1px #eee solid;
-				}
-				table {
-					margin: 20px auto;
-					min-width: 80%;
-					max-width: 94%;
-				}
-				td, tr, th {
-					padding: 10px;
-					margin: 10px;
-				}
-				th {
-					background-color: #00294e;
-					color: #ff6d00;
-				}
-			</style>
-		</head>
-	<body>
-";
-
-			}
