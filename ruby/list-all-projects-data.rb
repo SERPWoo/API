@@ -1,12 +1,12 @@
 #!/usr/bin/ruby
 #
-# This code requests all of your projects and outputs their ID, names, amount of keywords,
-# and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
+# GitHub: https://github.com/SERPWoo/API
 #
-# This output is text format
+# This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 20th, 2017 @ 10:52 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
+# Run Command: ruby list-all-projects-data.rb
 
 require 'net/http'
 require 'uri'
