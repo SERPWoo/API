@@ -1,9 +1,11 @@
 //
+// GitHub: https://github.com/SERPWoo/API
+//
 // This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
 // This output is text format
 //
-//  Last updated - Aug 21th, 2017 @ 14:45 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Run Command: nodejs list-all-projects.js
 //
