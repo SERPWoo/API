@@ -1,16 +1,14 @@
 //
-// This code requests all of your projects and outputs their ID, names, amount of keywords,
-// and direct links to API query of keywords (DO NOT DISPLAY THIS PUBLICALLY SINCE YOUR API KEY IS WITHIN THE SOURCE CODE)
-//
-//  Last updated - Aug 20th, 2017 @ 17:58 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
 // This output is text format
+//
+// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // You might need to install curl: apt-get install libcurl4-openssl-dev
 //
 // Compile command: gcc -ansi -pedantic -Wall -Werror -std=gnu99 -o list-all-projects list-all-projects.c -lm -lcurl
 // Run Command: ./list-all-projects
-//
 //
 // References: https://stackoverflow.com/questions/23647438/how-to-parse-nested-json-object
 // References: https://github.com/udp/json-parser
