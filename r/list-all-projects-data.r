@@ -1,15 +1,16 @@
 #!/usr/bin/env Rscript
 
 #
+# GitHub: https://github.com/SERPWoo/API
+#
 # This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 20th, 2017 @ 12:43 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
-
+# Last updated - Aug 22th, 2017 @ 17:00 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
-#https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
+# https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
 #
 # Run commpand: Rscript list-all-projects-data.r
-
+#
 
 	API_Key = "API_KEY_HERE"
 
