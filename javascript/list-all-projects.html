@@ -1,22 +1,24 @@
-<!--
-//
-// Github Repo: https://github.com/SERPWoo/API
-//
-//  This is a javascript sample code that uses AJAX to call a variation of the
-//  "list-all-projects-data" (You can use any coding language that outputs data
-//  through your web server - php is the default in the sample code); it will
-//  display each of your project's ID, names, amount of keywords, and links to
-//  the API query of keywords
-//
-//  Last updated - Aug 22th, 2017 @ 9:30 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
-//
-//
--->
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+
+
+		<!--
+		//
+		// Github Repo: https://github.com/SERPWoo/API
+		//
+		//  This is a javascript sample code that uses AJAX to call a variation of the
+		//  "list-all-projects-data" (You can use any coding language that outputs data
+		//  through your web server - php is the default in the sample code); it will
+		//  display each of your project's ID, names, amount of keywords, and links to
+		//  API query of keywords (You have to add your API key)
+		//
+		//  Last updated - Aug 22th, 2017 @ 20:08 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+		//
+		//
+		-->
+
 	<head>
 		<title>Untitled Document</title>
 		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE">
@@ -45,18 +47,20 @@
 				}
 			</style>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 
 				$('#data_table').html("<table><tr><th>Project ID</th><th>Name</th><th>Total Keywords</th><th>Link to Keywords</th></tr>");
 
 			    $.ajax({
-			      url: '../php/list-all-projects-data.php', //You need to use one of the "list-all-projects-data" in the other programming languages (php is default)
+			      url: '../php/list-all-projects-data.php', //You need to use one of the "list-all-projects-data" in the other programming languages
 			      type: 'POST',
 				  async:false,
 			      cache: false,
 					success: function( data, textStatus, XMLHttpRequest ) {
+						
+						
 						
 						  if (data.hasOwnProperty('success')) {
 
@@ -65,9 +69,9 @@
 			  	  						for (var project_id in data['projects']) {
 				  	  						  if (data['projects'].hasOwnProperty(project_id)) {
 
-												  //console.log(project_id + " -> " + data['projects'][project_id]['name']);
-												  //console.log(project_id + " -> " + data['projects'][project_id]['total']['keywords']);
-												  //console.log(project_id + " -> " + data['projects'][project_id]['_links']['keywords']);
+												  console.log(project_id + " -> " + data['projects'][project_id]['name']);
+												  console.log(project_id + " -> " + data['projects'][project_id]['total']['keywords']);
+												  console.log(project_id + " -> " + data['projects'][project_id]['_links']['keywords']);
 												  
 												  $('#data_table table tbody').append("<tr>");
 												  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #0099ff;'>" + project_id + "</span></td>");
