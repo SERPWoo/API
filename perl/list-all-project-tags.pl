@@ -6,7 +6,7 @@
 #
 # This output is text format
 #
-# Last updated - Aug 24th, 2017 @ 16:43 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 24th, 2017 @ 19:03 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 # Run Command: perl list-all-projects-tags.pl
 
@@ -69,7 +69,7 @@
 								if (defined $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'last_updated'}) {
 										$last_updated = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'last_updated'};
 								}else {
-										$last_updated = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'last_updated'};
+										$last_updated = $creation_date;
 								}
 								
 								
