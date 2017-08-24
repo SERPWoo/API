@@ -20,4 +20,4 @@ We ALWAYS respond to users within 24 hours and on average our response time is 3
 
 --
 
-Code base last updated Aug 22th, 2017 @ 20:11 EST
+Code base last updated Aug 24th, 2017 @ 15:27 EST
