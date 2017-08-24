@@ -3,7 +3,7 @@
 //
 // This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 24th, 2017 @ 15:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Compile Command: javac ListAllProjectsData.java
 // Run Command: java ListAllProjectsData
