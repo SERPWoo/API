@@ -10,6 +10,7 @@
 // Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //
+// Run Command: php list-all-projects.php
 
 	//outputs data in text/html format
 		header('Content-type: text/html');
