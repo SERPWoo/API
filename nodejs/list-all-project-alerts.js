@@ -1,13 +1,13 @@
 //
 // GitHub: https://github.com/SERPWoo/API
 //
-// This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
+// This code requests a project's Alerts and outputs the Alert ID, Social Timestamp, Alert Text, Alert Link
 //
 // This output is text format
 //
 // Last updated - Aug 25th, 2017 @ 7:18 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Run Command: nodejs list-all-projects.js
+// Run Command: nodejs list-all-project-alerts.js
 //
 
 	var request = require("request");
@@ -15,8 +15,9 @@
 
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 	var API_key = "API_KEY_HERE"
+	var Project_ID = 0 //input your Project ID
 
-	var url = "https://api.serpwoo.com/v1/projects/?key=" + API_key
+	var url = "https://api.serpwoo.com/v1/projects/" + Project_ID + "/alerts/?key=" + API_key
 
 		request({
 				    url: url,
@@ -30,12 +31,15 @@
 								if (JsonData.success === 1) {
 
 									console.log("\n--\n");
-									console.log(sprintf("%-15s %-70s %-20s %-70s", 'Project ID', 'Project Name', 'Total Keywords', 'Link to Keywords'));
-									console.log(sprintf("%-15s %-70s %-20s %-70s", '----------', '------------', '--------------', '----------------'));
+									console.log(sprintf("%-15s %-20s %-100s %-90s", "Alert ID", "Social Timestamp", "Alert Text", "Alert Link"));
+									console.log(sprintf("%-15s %-20s %-100s %-90s", "--------", "----------------", "----------", "----------"));
 							
-									for(var exKey in JsonData.projects) {
+									for(var project_id in JsonData.projects) {
 
-										console.log(sprintf("%-15s %-70s %-20s %-70s", exKey, JsonData.projects[exKey].name, JsonData.projects[exKey].total.keywords, JsonData.projects[exKey]._links.keywords));
+										for(var id in JsonData.projects[project_id]['alerts']) {
+
+										console.log(sprintf("%-15s %-20s %-100s %-90s", id, JsonData.projects[project_id]['alerts'][id].social_time, JsonData.projects[project_id]['alerts'][id].text, JsonData.projects[project_id]['alerts'][id].link));
+										}
 
 									}
 

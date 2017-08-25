@@ -3,11 +3,10 @@
 //
 // This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 25th, 2017 @ 7:18 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Run Command: nodejs list-all-projects-data.js
 //
-
 
 	var request = require("request")
 
