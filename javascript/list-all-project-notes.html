@@ -10,10 +10,10 @@
 		//  This is a javascript sample code that uses AJAX to call a variation of the
 		//  "list-all-projects-data" (You can use any coding language that outputs data
 		//  through your web server - php is the default in the sample code);
-		//	
-		//  This will display each of your project's ID, names, amount of keywords, and links to API query of keywords
 		//
-		//  Last updated - Aug 25th, 2017 @ 12:06 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+		//  This code requests a project's Notes and outputs the Note ID, Note Timestamp, Note Type, Note Message
+		//
+		//  Last updated - Aug 25th, 2017 @ 12:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 		//
 		-->
 
@@ -49,10 +49,10 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 
-				$('#data_table').html("<table><tr><th>Project ID</th><th>Name</th><th>Total Keywords</th><th>Link to Keywords</th></tr>");
+				$('#data_table').html("<table><tr><th>Note ID</th><th>Timestamp</th><th>Type</th><th>Note</th></tr>");
 
 			    $.ajax({
-			      url: 'ajax-php/ajax-projects.php', //Customize this to your ajax (You can download the /ajax-php/ folder to get started - add your API Key to each)
+			      url: 'ajax-php/ajax-project-notes.php', //Customize this to your ajax (You can download the /ajax-php/ folder to get started - add your API Key to each)
 			      type: 'POST',
 				  async:false,
 			      cache: false,
@@ -65,16 +65,17 @@
 			  	  						for (var project_id in jsonData['projects']) {
 				  	  						  if (jsonData['projects'].hasOwnProperty(project_id)) {
 
-												  //console.log(project_id + " -> " + jsonData['projects'][project_id]['name']);
-												  //console.log(project_id + " -> " + jsonData['projects'][project_id]['total']['keywords']);
-												  //console.log(project_id + " -> " + jsonData['projects'][project_id]['_links']['keywords']);
+		  			  	  						for (var note_id in jsonData['projects'][project_id]['notes']) {
+		  				  	  						  if (jsonData['projects'][project_id]['notes'].hasOwnProperty(note_id)) {
 												  
-												  $('#data_table table tbody').append("<tr>");
-												  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #0099ff;'>" + project_id + "</span></td>");
-												  $('#data_table table tbody').append("<td style='text-align: left;'><span style='color: #ff0099;'>" + jsonData['projects'][project_id]['name'] + "</span></td>");
-												  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #009900;'>" + jsonData['projects'][project_id]['total']['keywords'] + "</span></td>");
-												  $('#data_table table tbody').append("<td style='text-align: left;'><u style='color: #0000ff;'>" + jsonData['projects'][project_id]['_links']['keywords'] + "</u></td>");
-												  $('#data_table table tbody').append("</tr>");
+														  $('#data_table table tbody').append("<tr>");
+														  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #0099ff;'>" + note_id + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #ff0099;'>" + jsonData['projects'][project_id]['notes'][note_id]['note']['timestamp'] + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #009900;'>" + jsonData['projects'][project_id]['notes'][note_id]['type'] + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: left;'><span style='color: #0099ff;'>" + jsonData['projects'][project_id]['notes'][note_id]['note']['message'] + "</span></td>");
+														  $('#data_table table tbody').append("</tr>");
+													  }
+												  }
 
 				  							  }
 									  	}							  	
