@@ -1,15 +1,13 @@
 //
-//
 // Github Repo: https://github.com/SERPWoo/API
 //
 // This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
 // This output is text format
 //
-// Last updated - Aug 22th, 2017 @ 21:48 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 26th, 2017 @ 16:35 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Run Command: go run list-all-project.go
-//
+// Run Command: go run list-all-projects.go
 //
 
 	package main
@@ -44,7 +42,6 @@ func main() {
 			resp, err := http.Get(url)
 
 			if err != nil {
-				// There is a problem
 				fmt.Println(err)
 			}
 
