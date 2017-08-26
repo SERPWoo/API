@@ -3,31 +3,45 @@
 #
 # GitHub: https://github.com/SERPWoo/API
 #
-# This code requests all of your projects and outputs their names, amount of keywords, and links to API query of keywords
+# This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 #
-# Last updated - Aug 22th, 2017 @ 18:07 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 26th, 2017 @ 19:25 EST (@ParfaitG https://github.com/ParfaitG)
 #
+# https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html
 # https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
 #
-# Run commpand: Rscript list-all-projects.r
+# Run command: Rscript list-all-projects.r
 #
 
-library(jsonlite)
+	library(httr)
+	library(jsonlite)
 
-	API_Key = "API_KEY_HERE"
+	options(width=1200)
 
-		json_reply <- fromJSON(paste0("https://api.serpwoo.com/v1/projects/?key=", API_Key))
+		# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+		API_Key = "API_KEY_HERE"
 
-		#names(json_reply$projects)
+	url = paste0("https://api.serpwoo.com/v1/projects/")
+	request <- GET(url, query=list(key=API_Key))
+	#http_status(request)
 
-		cat("\n--\n")
-		
-		m<-lapply(
-		        json_reply$projects, 
-		        function(project_id) sprintf("Project Name: %-70s Total KWs: %-20s Link To KW: %s", project_id$name, project_id$total$keywords, project_id$'_links'$keywords)
-		)
+		json_reply <- fromJSON(content(request, "text", encoding = "UTF-8"))$projects
 
-		m <- do.call(rbind, m)
-		paste(m)
+# BIND API RESULTS TO DATAFRAME
+	df <- data.frame(
+	         `Project ID` = as.integer(names(json_reply)),
+	         `Project Name` = vapply(json_reply, function(item) item$name, character(1), USE.NAMES=F),
+	         `Total Keywords` = vapply(json_reply, function(item) item$total$keywords, numeric(1), USE.NAMES=F),
+	         `Link to Keywords` = vapply(json_reply, function(item) item$'_links'$keywords, character(1), USE.NAMES=F),
+	         check.names = F, stringsAsFactors = F
+	      )
 
-		cat("--\n\n")
+	# ORDER PROJECT ID (ASC)
+	df <- with(df, df[order(`Project ID`), ])
+
+	# OUTPUT CONTENT TO SCREEN
+	cat("\n--\n")
+
+		print(df, row.names=F)
+
+	cat("--\n\n")

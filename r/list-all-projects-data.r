@@ -5,11 +5,11 @@
 #
 # This code requests all of your projects' data in JSON format
 #
-# Last updated - Aug 22th, 2017 @ 17:00 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 26th, 2017 @ 19:40 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 # https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
 #
-# Run commpand: Rscript list-all-projects-data.r
+# Run command: Rscript list-all-projects-data.r
 #
 
 	API_Key = "API_KEY_HERE"
