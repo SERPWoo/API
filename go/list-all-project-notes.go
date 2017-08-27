@@ -5,7 +5,7 @@
 //
 // This output is text format
 //
-// Last updated - Aug 27th, 2017 @ 8:50 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 27th, 2017 @ 9:08 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Run Command: go run list-all-project-notes.go
 //
