@@ -33,7 +33,6 @@
 				} `json:"note"`
 	}
 
-
 func main() {
 	
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
@@ -69,6 +68,9 @@ func main() {
 
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 func Call_Project_Notes_API(pid, api_key string) (map[string]NoteData, error) {
 
