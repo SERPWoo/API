@@ -3,7 +3,7 @@
 //
 // This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 24th, 2017 @ 15:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 28th, 2017 @ 1:06 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Compile Command: javac ListAllProjectsData.java
 // Run Command: java ListAllProjectsData
@@ -22,6 +22,7 @@ public class ListAllProjectsData
 {
   public static void main(String[] args)
   {
+	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
   	String API_key = "API_KEY_HERE";
     String output  = getUrlContents("https://api.serpwoo.com/v1/projects/?key=" + API_key);
     System.out.println(output);

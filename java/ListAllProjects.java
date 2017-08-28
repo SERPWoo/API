@@ -1,24 +1,21 @@
 //
 //
-// Github Repo: https://github.com/SERPWoo/API
+// Github: https://github.com/SERPWoo/API
 //
 // This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
 // This output is text format (You'll need the "lib/jackson-all-1.9.0.jar" file)
 //
-// Last updated - Aug 24th, 2017 @ 15:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 28th, 2017 @ 1:07 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjects.java
 //
 // - OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
 //
 // Compile Command: javac ListAllProjects.java
-//
 // Run Command: java ListAllProjects
 //
 //
-
-
 
 import org.codehaus.jackson.annotate.JsonAnyGetter;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -30,14 +27,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
-
-//Jackson parser is used for parsing string to json
-
 @SuppressWarnings("unchecked")
 public class ListAllProjects {
 
     public static void main(String[] args) {
 
+		// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
         String API_key = "API_KEY_HERE";
         String output = getUrlContents("https://api.serpwoo.com/v1/projects/?key=" + API_key);
 
