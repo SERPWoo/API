@@ -1,7 +1,7 @@
 //
 //	GitHub: https://github.com/SERPWoo/API
 //
-//	This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
+//	This code requests a project's Tags (Domains/URLs) and outputs the Tag ID, Tag, ORM Tag, Settings, Creation Date, Last_Updated
 //
 //	This output is text format
 //
@@ -9,8 +9,8 @@
 //
 //	You might need to install curl: apt-get install libcurl4-openssl-dev
 //
-//	Compile command: gcc -ansi -pedantic -Wall -Werror -std=gnu99 -o list-all-projects list-all-projects.c -lm -lcurl
-//	Run Command: ./list-all-projects
+//	Compile command: gcc -ansi -pedantic -Wall -Werror -std=gnu99 -o list-all-project-tags list-all-project-tags.c -lm -lcurl
+//	Run Command: ./list-all-project-tags
 //
 // References: https://stackoverflow.com/questions/23647438/how-to-parse-nested-json-object
 // References: https://github.com/udp/json-parser
@@ -41,15 +41,20 @@
 		static void process_value(json_value* value, int depth, char* parentName);
 		static void process_object(json_value* value, int depth);
 		static void process_array(json_value* value, int depth);
-		static void List_ALL_Project_Row();
+		static void List_Row();
 
 //// Variables
 		int total_projects = 0;
 
-        char* currentName = "";
-        char* currentKeywordPath = "";
-        int currentKeywords = 0;
         char* currentId = "";
+        char* currentTag = "";
+        char* currentSettingType = "";
+
+        int currentORM = 0;
+        int currentCreation = 0;
+        int currentLastUpdate = 0;
+
+        //int currentKeywords = 0;
         int selectedTotal = 0;
         int printedRowCount = 0;
 
@@ -62,13 +67,14 @@ int main(int argc, char** argv)
 
 		// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 		char* API_key = "API_KEY_HERE";
+		int Project_ID = 0; //Input your Project ID
 
-		char* request_url = "https://api.serpwoo.com/v1/projects/?key=";
+		char* request_url = "https://api.serpwoo.com/v1";
 
 		char final_request_URL[255];
 		int the_statement;
 
-		the_statement = snprintf(final_request_URL, 255, "%s%s", request_url, API_key);
+		the_statement = snprintf(final_request_URL, 255, "%s/projects/%d/tags/?key=%s", request_url, Project_ID, API_key);
 
 		if (the_statement > sizeof(final_request_URL)) {
 				//printf("Error: Something went wrong. Suppose to be 255 not [%ld]. Exiting.\n", sizeof(final_request_URL));
@@ -88,7 +94,7 @@ int main(int argc, char** argv)
 
 		        process_value(json_data, 0, "");
 
-		        printf("\n--\n");
+		        printf("\n--\n\n");
 
 	    }
 
@@ -102,22 +108,27 @@ int main(int argc, char** argv)
 ////////////////////////////////////////
 
 //print to the display
-static void List_ALL_Project_Row(){
+static void List_Row(){
 
     if(printedRowCount == 0) {
-        printf("%-15s%-70s%-20s%-70s\n","Project ID", "Project Name", "Total Keywords", "Link to Keywords");
-        printf("%-15s%-70s%-20s%-70s\n","----------", "------------", "--------------", "----------------");
+        printf("%-15s %-80s %-15s %-10s %-15s %-15s\n", "Tag ID", "Tag", "ORM Tag", "Settings", "Creation Date", "Last Update");
+        printf("%-15s %-80s %-15s %-10s %-15s %-15s\n", "------", "---", "-------", "--------", "-------------", "-----------");
     }
 
     printedRowCount++;
-
-    printf("%-15s%-70s%-20d%-70s\n",currentId, currentName, currentKeywords, currentKeywordPath);
+	
+    printf("%-15s %-80s %-15d %-10s %-15d %-15d\n",currentId, currentTag, currentORM, currentSettingType, currentCreation, currentLastUpdate);
     selectedTotal = 0;
+
     currentId = "";
-    currentName = "";
-    currentKeywords = 0;
-    currentKeywordPath = "";
+    currentTag = "";
+    currentSettingType = "";
+
+    currentORM = 0;
+    currentCreation = 0;
+    currentLastUpdate = 0;
 }
+
 
 
 static void process_object(json_value* value, int depth)
@@ -129,25 +140,40 @@ static void process_object(json_value* value, int depth)
         length = value->u.object.length;
         for (x = 0; x < length; x++) {
 
-                if(depth == 3) {
+		    //printf("%-15d depth=[%d] // %s\n", selectedTotal, depth, value->u.object.values[x].name);
+
+                if(depth == 7) {
                             currentId = value->u.object.values[x].name;
                             selectedTotal++;
-                } if(depth == 5 && strcmp(value->u.object.values[x].name, "name") == 0 ) {
-                            currentName = value->u.object.values[x].value->u.string.ptr;
+		        }
+				
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "tag") == 0 ) {
+                            currentTag = value->u.object.values[x].value->u.string.ptr;
                             selectedTotal++;
-                } if(depth == 7 && strcmp(value->u.object.values[x].name, "keywords") == 0   ) {
-                            char* stringValue =  value->u.object.values[x].value->u.string.ptr;
-                            if(NULL == stringValue) {
-                                    currentKeywords = value->u.object.values[x].value->u.integer;
-                                    selectedTotal++;
-                            } else {
-                                    currentKeywordPath = stringValue;
-                                    selectedTotal++;
-                            }
                 }
+				
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "creation_date") == 0 ) {
+                            currentCreation = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+                }				
 
-                if(selectedTotal == 4) {
-                    List_ALL_Project_Row();
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "last_updated") == 0 ) {
+                            currentLastUpdate = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+                }				
+
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "orm") == 0 ) {
+                            currentORM = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+                }				
+
+				if(depth == 11 && strcmp(value->u.object.values[x].name, "type") == 0 ) {
+                            currentSettingType = value->u.object.values[x].value->u.string.ptr;
+                            selectedTotal++;
+                }				
+
+                if(selectedTotal == 6) { //corresponds with total amount of variables we are looking for
+                    List_Row();
                 }
 
                 process_value(value->u.object.values[x].value, depth+1, value->u.object.values[x].name );
@@ -186,13 +212,9 @@ static void process_value(json_value* value, int depth, char* parentName)
         }
         switch (value->type) {
             	case json_null:
-                    //printf("null\n");
-                    //printf("depth of above element = %d \n", depth);
-                    break;
+						break;
                 case json_none:
-                        //printf("none\n");
-                        //printf("depth of above element = %d \n", depth);
-                        break;
+						break;
                 case json_object:
                         process_object(value, depth+1);
                         break;
@@ -200,21 +222,13 @@ static void process_value(json_value* value, int depth, char* parentName)
                         process_array(value, depth+1);
                         break;
                 case json_integer:
-                        //printf("int: %10" PRId64 "\n", value->u.integer);
-                        //printf("depth of above element = %d, parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_double:
-                        //printf("double: %f\n", value->u.dbl);
-                        //printf("depth of above element = %d, parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_string:
-                        //printf("string: %s\n", value->u.string.ptr);
-                        //printf("depth of above element = %d , parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_boolean:
-                        //printf("bool: %d\n", value->u.boolean);
-                        //printf("depth of above element = %d, parent = %s \n", depth, parentName);
-                        break;
+						break;
         }
 }
 

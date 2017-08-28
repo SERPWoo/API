@@ -1,18 +1,19 @@
 //
-// GitHub: https://github.com/SERPWoo/API
+//	GitHub: https://github.com/SERPWoo/API
 //
 // This code requests all of your project's data and outputs the JSON format
 //
-// Last updated - Aug 21th, 2017 @ 16:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//  Last updated - Aug 27th, 2017 @ 14:08 PM EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// This output is JSON Format
 //
 // You might need to install curl: apt-get install libcurl4-openssl-dev
 //
-// Compile Command: gcc -ansi -pedantic -Wall -Werror -lm -std=gnu99 -o list-all-projects-data list-all-projects-data.c -lcurl
-// Run Command: ./list-all-projects-data
+// Compile Command: gcc -ansi -pedantic -Wall -Werror -lm -std=gnu99 -o list-all-projects-data list-all-projects-data.c -lcurl */
+//	Run Command: ./list-all-projects-data
 //
 //
+//
+
 
 #include <stdio.h>
 #include <curl/curl.h>
@@ -37,6 +38,7 @@ int main(int argc, char* argv[]) {
 	
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 	char* API_key = "API_KEY_HERE";
+
 	char* request_url = "https://api.serpwoo.com/v1/projects/?key=";
 
 	char final_request_URL[255];

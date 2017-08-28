@@ -1,16 +1,16 @@
 //
 //	GitHub: https://github.com/SERPWoo/API
 //
-//	This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
+//	This code requests a project's keywords and outputs the Keyword ID, Keyword, PPC Comp, OCI, Volume, CPC (USD), created date, oldest date, recent date, Link To SERPs
 //
 //	This output is text format
 //
-//	Last updated - Aug 27th, 2017 @ 22:05 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 27th, 2017 @ 22:03 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	You might need to install curl: apt-get install libcurl4-openssl-dev
 //
-//	Compile command: gcc -ansi -pedantic -Wall -Werror -std=gnu99 -o list-all-projects list-all-projects.c -lm -lcurl
-//	Run Command: ./list-all-projects
+//	Compile command: gcc -ansi -pedantic -Wall -Werror -std=gnu99 -o list-all-project-keywords list-all-project-keywords.c -lm -lcurl
+//	Run Command: ./list-all-project-keywords
 //
 // References: https://stackoverflow.com/questions/23647438/how-to-parse-nested-json-object
 // References: https://github.com/udp/json-parser
@@ -41,15 +41,24 @@
 		static void process_value(json_value* value, int depth, char* parentName);
 		static void process_object(json_value* value, int depth);
 		static void process_array(json_value* value, int depth);
-		static void List_ALL_Project_Row();
+		static void List_Row();
 
 //// Variables
 		int total_projects = 0;
 
-        char* currentName = "";
-        char* currentKeywordPath = "";
-        int currentKeywords = 0;
         char* currentId = "";
+        char* currentKeyword = "";
+        char* currentKeyword_Comp = "";
+        char* currentKeyword_OCI = "";
+        char* currentKeyword_CPC_USD_Amount = "";
+        char* currentKeyword_Links_SERPs = "";
+
+        int currentKeyword_Volume = 0;
+        int currentKeyword_Creation_Date = 0;
+        int currentKeyword_SERP_data_oldest_date = 0;
+        int currentKeyword_SERP_data_recent_date = 0;
+
+        //int currentKeywords = 0;
         int selectedTotal = 0;
         int printedRowCount = 0;
 
@@ -62,13 +71,14 @@ int main(int argc, char** argv)
 
 		// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 		char* API_key = "API_KEY_HERE";
+		int Project_ID = 0; //Input your Project ID
 
-		char* request_url = "https://api.serpwoo.com/v1/projects/?key=";
+		char* request_url = "https://api.serpwoo.com/v1";
 
 		char final_request_URL[255];
 		int the_statement;
 
-		the_statement = snprintf(final_request_URL, 255, "%s%s", request_url, API_key);
+		the_statement = snprintf(final_request_URL, 255, "%s/projects/%d/keywords/?key=%s", request_url, Project_ID, API_key);
 
 		if (the_statement > sizeof(final_request_URL)) {
 				//printf("Error: Something went wrong. Suppose to be 255 not [%ld]. Exiting.\n", sizeof(final_request_URL));
@@ -88,7 +98,7 @@ int main(int argc, char** argv)
 
 		        process_value(json_data, 0, "");
 
-		        printf("\n--\n");
+		        printf("\n--\n\n");
 
 	    }
 
@@ -102,22 +112,30 @@ int main(int argc, char** argv)
 ////////////////////////////////////////
 
 //print to the display
-static void List_ALL_Project_Row(){
+static void List_Row(){
 
     if(printedRowCount == 0) {
-        printf("%-15s%-70s%-20s%-70s\n","Project ID", "Project Name", "Total Keywords", "Link to Keywords");
-        printf("%-15s%-70s%-20s%-70s\n","----------", "------------", "--------------", "----------------");
+        printf("%-15s %-50s %-10s %-10s %-15s %-10s %-15s %-15s %-15s %-40s\n", "Keyword ID", "Keyword", "PPC Comp", "OCI", "Search Volume", "CPC (USD)", "Created Date", "Oldest Date", "Recent Date", "Link To SERPs");
+        printf("%-15s %-50s %-10s %-10s %-15s %-10s %-15s %-15s %-15s %-40s\n", "----------", "-------", "--------", "---", "-------------", "---------", "------------", "-----------", "-----------", "-------------");
     }
 
     printedRowCount++;
-
-    printf("%-15s%-70s%-20d%-70s\n",currentId, currentName, currentKeywords, currentKeywordPath);
+	
+    printf("%-15s %-50s %-10s %-10s %-15d %-10s %-15d %-15d %-15d %-40s\n",currentId, currentKeyword, currentKeyword_Comp, currentKeyword_OCI, currentKeyword_Volume, currentKeyword_CPC_USD_Amount, currentKeyword_Creation_Date, currentKeyword_SERP_data_oldest_date, currentKeyword_SERP_data_recent_date, currentKeyword_Links_SERPs);
     selectedTotal = 0;
+
     currentId = "";
-    currentName = "";
-    currentKeywords = 0;
-    currentKeywordPath = "";
+    currentKeyword = "";
+    currentKeyword_Comp = "";
+    currentKeyword_OCI = "";
+    currentKeyword_Volume = 0;
+    currentKeyword_CPC_USD_Amount = "";
+    currentKeyword_Creation_Date = 0;
+    currentKeyword_SERP_data_oldest_date = 0;
+    currentKeyword_SERP_data_recent_date = 0;
+    currentKeyword_Links_SERPs = "";
 }
+
 
 
 static void process_object(json_value* value, int depth)
@@ -129,25 +147,70 @@ static void process_object(json_value* value, int depth)
         length = value->u.object.length;
         for (x = 0; x < length; x++) {
 
-                if(depth == 3) {
+		    //printf("%-15d depth=[%d] // %s\n", selectedTotal, depth, value->u.object.values[x].name);
+
+                if(depth == 7) {
                             currentId = value->u.object.values[x].name;
                             selectedTotal++;
-                } if(depth == 5 && strcmp(value->u.object.values[x].name, "name") == 0 ) {
-                            currentName = value->u.object.values[x].value->u.string.ptr;
+						    //printf("currentId = %-15d %-15s\n", selectedTotal, currentId);
+		        }
+				
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "keyword") == 0 ) {
+                            currentKeyword = value->u.object.values[x].value->u.string.ptr;
                             selectedTotal++;
-                } if(depth == 7 && strcmp(value->u.object.values[x].name, "keywords") == 0   ) {
-                            char* stringValue =  value->u.object.values[x].value->u.string.ptr;
-                            if(NULL == stringValue) {
-                                    currentKeywords = value->u.object.values[x].value->u.integer;
-                                    selectedTotal++;
-                            } else {
-                                    currentKeywordPath = stringValue;
-                                    selectedTotal++;
-                            }
+						    //printf("currentKeyword %-15d %-15s\n", selectedTotal, currentKeyword);
+                }
+				
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "Comp") == 0 ) {
+                            currentKeyword_Comp = value->u.object.values[x].value->u.string.ptr;
+                            selectedTotal++;
+						    //printf("currentKeyword_Comp %-15d %-15s\n", selectedTotal, currentKeyword_Comp);
                 }
 
-                if(selectedTotal == 4) {
-                    List_ALL_Project_Row();
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "oci") == 0 ) {
+                            currentKeyword_OCI = value->u.object.values[x].value->u.string.ptr;
+                            selectedTotal++;
+						    //printf("currentKeyword_OCI %-15d %-15s\n", selectedTotal, currentKeyword_OCI);
+                }				
+
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "volume") == 0 ) {
+                            currentKeyword_Volume = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+						    //printf("currentKeyword_Volume %-15d %-15d\n", selectedTotal, currentKeyword_Volume);
+                }				
+
+				if(depth == 9 && strcmp(value->u.object.values[x].name, "creation_date") == 0 ) {
+                            currentKeyword_Creation_Date = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+						    //printf("currentKeyword_Creation_Date %-15d %-15d\n", selectedTotal, currentKeyword_Creation_Date);
+                }				
+
+				if(depth == 11 && strcmp(value->u.object.values[x].name, "oldest_date") == 0 ) {
+                            currentKeyword_SERP_data_oldest_date = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+						    //printf("currentKeyword_SERP_data_oldest_date %-15d %-15d\n", selectedTotal, currentKeyword_SERP_data_oldest_date);
+                }				
+
+				if(depth == 11 && strcmp(value->u.object.values[x].name, "recent_date") == 0 ) {
+                            currentKeyword_SERP_data_recent_date = value->u.object.values[x].value->u.integer;
+                            selectedTotal++;
+						    //printf("currentKeyword_SERP_data_recent_date %-15d %-15d\n", selectedTotal, currentKeyword_SERP_data_recent_date);
+                }				
+
+				if(depth == 11 && strcmp(value->u.object.values[x].name, "serps") == 0 ) {
+                            currentKeyword_Links_SERPs = value->u.object.values[x].value->u.string.ptr;
+                            selectedTotal++;
+						    //printf("currentKeyword_Links_SERPs %-15d %-15s\n", selectedTotal, currentKeyword_Links_SERPs);
+                }	
+
+				if(depth == 13 && strcmp(value->u.object.values[x].name, "amount") == 0 ) {
+                            currentKeyword_CPC_USD_Amount = value->u.object.values[x].value->u.string.ptr;
+                            selectedTotal++;
+						    //printf("currentKeyword_CPC_USD_Amount %-15d %-15s\n", selectedTotal, currentKeyword_CPC_USD_Amount);
+                }				
+
+                if(selectedTotal == 10) { //corresponds with total amount of variables we are looking for
+                    List_Row();
                 }
 
                 process_value(value->u.object.values[x].value, depth+1, value->u.object.values[x].name );
@@ -186,13 +249,9 @@ static void process_value(json_value* value, int depth, char* parentName)
         }
         switch (value->type) {
             	case json_null:
-                    //printf("null\n");
-                    //printf("depth of above element = %d \n", depth);
-                    break;
+						break;
                 case json_none:
-                        //printf("none\n");
-                        //printf("depth of above element = %d \n", depth);
-                        break;
+						break;
                 case json_object:
                         process_object(value, depth+1);
                         break;
@@ -200,21 +259,13 @@ static void process_value(json_value* value, int depth, char* parentName)
                         process_array(value, depth+1);
                         break;
                 case json_integer:
-                        //printf("int: %10" PRId64 "\n", value->u.integer);
-                        //printf("depth of above element = %d, parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_double:
-                        //printf("double: %f\n", value->u.dbl);
-                        //printf("depth of above element = %d, parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_string:
-                        //printf("string: %s\n", value->u.string.ptr);
-                        //printf("depth of above element = %d , parent = %s \n", depth,parentName);
-                        break;
+						break;
                 case json_boolean:
-                        //printf("bool: %d\n", value->u.boolean);
-                        //printf("depth of above element = %d, parent = %s \n", depth, parentName);
-                        break;
+						break;
         }
 }
 
