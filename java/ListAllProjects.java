@@ -1,20 +1,18 @@
 //
+//	Github: https://github.com/SERPWoo/API
 //
-// Github: https://github.com/SERPWoo/API
+//	This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
-// This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
+//	This output is text format (You'll need the "lib/jackson-all-1.9.0.jar" file)
 //
-// This output is text format (You'll need the "lib/jackson-all-1.9.0.jar" file)
+//	Last updated - Aug 28th, 2017 @ 19:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Last updated - Aug 28th, 2017 @ 1:07 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjects.java
 //
-// Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjects.java
+//	- OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
 //
-// - OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
-//
-// Compile Command: javac ListAllProjects.java
-// Run Command: java ListAllProjects
-//
+//	Compile Command: javac ListAllProjects.java
+//	Run Command: java ListAllProjects
 //
 
 import org.codehaus.jackson.annotate.JsonAnyGetter;

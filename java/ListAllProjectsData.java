@@ -1,12 +1,12 @@
 //
-// GitHub: https://github.com/SERPWoo/API
+//	GitHub: https://github.com/SERPWoo/API
 //
-// This code requests all of your projects' data in JSON format
+//	This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 28th, 2017 @ 1:06 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 28th, 2017 @ 19:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Compile Command: javac ListAllProjectsData.java
-// Run Command: java ListAllProjectsData
+//	Compile Command: javac ListAllProjectsData.java
+//	Run Command: java ListAllProjectsData
 //
 
 import java.net.*;

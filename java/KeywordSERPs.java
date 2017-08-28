@@ -1,20 +1,18 @@
 //
+//	GitHub: https://github.com/SERPWoo/API
 //
-// GitHub: https://github.com/SERPWoo/API
+//	This code requests a Keyword's SERP Results and outputs the Timestamp, Rank, Type, Page Title, URL
 //
-// This code requests a Keyword's SERP Results and outputs the Timestamp, Rank, Type, Page Title, URL
+//	This output is text format
 //
-// This output is text format
+//	Last updated - Aug 28th, 2017 @ 19:24 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Last updated - Aug 28th, 2017 @ 17:30 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" KeywordSERPs.java
 //
-// Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" KeywordSERPs.java
+//	- OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
 //
-// - OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
-//
-// Compile Command: javac KeywordSERPs.java
-// Run Command: java KeywordSERPs
-//
+//	Compile Command: javac KeywordSERPs.java
+//	Run Command: java KeywordSERPs
 //
 
 import org.codehaus.jackson.annotate.JsonAnyGetter;
