@@ -6,7 +6,7 @@
 //
 // This output is text format
 //
-// Last updated - Aug 28th, 2017 @ 1:04 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 28th, 2017 @ 17:30 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" KeywordSERPs.java
 //
@@ -34,8 +34,8 @@ public class KeywordSERPs {
 
 			// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
             String API_key = "API_KEY_HERE";
-            String Project_ID = 0; //input your Project ID
-            String Keyword_ID = 0; //input your Keyword ID
+            String Project_ID = "0"; //input your Project ID (has to be string)
+            String Keyword_ID = "0"; //input your Keyword ID (has to be string)
 
             String output = getUrlContents("https://api.serpwoo.com/v1/serps/" + Project_ID + "/" + Keyword_ID + "/?key=" + API_key);
 
@@ -46,7 +46,7 @@ public class KeywordSERPs {
             try {
 
                 Response response = mapper.readValue(output, Response.class);
-                Iterator it = ((Map<String, Object>) response.getOther().get("235082")).entrySet().iterator();
+                Iterator it = ((Map<String, Object>) response.getOther().get(Keyword_ID)).entrySet().iterator();
 
                 //iterate through each entry in projects element and add required fields to the row object
                 while (it.hasNext()) {
