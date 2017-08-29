@@ -6,7 +6,7 @@
 #
 # This output is text format
 #
-# Last updated - Aug 24th, 2017 @ 16:16 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 29th, 2017 @ 13:58 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 # Run Command: perl list-all-projects-domains.pl
 
@@ -56,8 +56,8 @@
 
 								$domain = $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'domain'};
 								$orm_tag = $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'orm'};
-								if (defined $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'settings'}{'type'}) {
-										$settings_type = $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'settings'}{'type'};
+								if (defined $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'setting'}{'type'}) {
+										$settings_type = $JSON_DATA{'projects'}{$Project_ID}{'domains'}{$domain_id}{'setting'}{'type'};
 								}else {
 									$settings_type = "(n/a)";
 								}

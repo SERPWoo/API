@@ -6,7 +6,7 @@
 //
 // This output is HTML code
 //
-// Last updated - Aug 24th, 2017 @ 18:54 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 29th, 2017 @ 13:58 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //
 // Run Command: php list-all-project-tags.php

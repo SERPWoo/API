@@ -6,7 +6,7 @@
 #
 # This output is text format
 #
-# Last updated - Aug 24th, 2017 @ 19:03 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+# Last updated - Aug 29th, 2017 @ 13:58 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 #
 # Run Command: perl list-all-projects-tags.pl
 
@@ -58,8 +58,8 @@
 								$tag = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'tag'};
 								$orm_tag = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'orm'};
 
-								if (defined $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'settings'}{'type'}) {
-										$settings_type = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'settings'}{'type'};
+								if (defined $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'setting'}{'type'}) {
+										$settings_type = $JSON_DATA{'projects'}{$Project_ID}{'tags'}{$tag_id}{'setting'}{'type'};
 								}else {
 										$settings_type = "(n/a)";
 								}
