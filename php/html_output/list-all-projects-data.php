@@ -4,12 +4,11 @@
 //
 // This code requests all of your projects' data in JSON format
 //
-// This output is text
+// Last updated - Aug 30th, 2017 @ 11:10 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Last updated - Aug 30th, 2017 @ 11:00 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
-//
-// Run Command: php list-all-projects-data.php
-//
+
+	//outputs data in JSON format
+		header('Content-type: application/json');
 
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 		$API_key = "API_KEY_HERE";

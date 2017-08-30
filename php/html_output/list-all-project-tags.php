@@ -4,20 +4,19 @@
 //
 // This code requests a project's Tags (Domains/URLs) and outputs the Tag ID, Tag, ORM Tag, Settings, Creation Date, Last_Updated
 //
-// This output is text
+// This output is HTML code
 //
-// Last updated - Aug 30th, 2017 @ 10:50 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Aug 30th, 2017 @ 11:09 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-// Run Command: php list-all-project-tags.php
-//
+
+	//outputs data in text/html format
+		header('Content-type: text/html');
 
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
 		$API_key = "API_KEY_HERE";
 		$Project_ID = 0;		//input your Project ID
 
-
 		$requestURL = "https://api.serpwoo.com/v1/projects/" . $Project_ID . "/tags/?key=" . $API_key;
-
 
 	// Use Curl to get the request
 		$options = array(
@@ -32,16 +31,15 @@
 		
 		$JSONData = json_decode($json_content, true); //Make sure the 2nd variables = true, otherwise you'll have a hell of a time trying to parse this
 
-			echo "\n--\n";
+		html_css_style();
 
 			//if this query was even successful or not - ALWAYS check this this = 1
 			if ($JSONData['success'] == 1) {
 
-				echo sprintf("%-15s %-80s %-15s %-10s %-15s %-15s\n", "Tag ID", "Tag", "ORM Tag", "Settings", "Creation Date", "Last Update");
-				echo sprintf("%-15s %-80s %-15s %-10s %-15s %-15s\n", "------", "---", "-------", "--------", "-------------", "-----------");
+  			  echo "<table>\n<tr><th>Tag ID</th><th>Tag</th><th>ORM Tag</th><th>Settings</th><th>Creation Date</th><th>Last Update</th></tr>\n";
 
 					foreach ($JSONData as $key => $jsons_data) {
-					  //echo "Name: " . $key . "<br>";
+					  //echo "<b style='color: #0099ff;'>Name:</b> " . $key . "<br>";
 							
 							 if ($key == 'projects') {
 
@@ -77,7 +75,14 @@
 															$last_updated = "";
 														}
 
-														echo sprintf("%-15d %-80s %-15d %-10s %-15d %-15d\n", $id, $tag, $orm_tag, $settings_type, $creation_date, $last_updated);
+			  										  echo "<tr>";
+													  echo "<td style='text-align: center;'><span style='color: #0099ff;'>" . $id . "</span></td>";
+													  echo "<td style='text-align: left;'><span style='color: #ff0099;'>" . $tag . "</span></td>";
+													  echo "<td style='text-align: left;'><span style='color: #666666;'>" . $orm_tag . "</span></td>";
+													  echo "<td style='text-align: left;'><span style='color: #666666;'>" . $settings_type . "</span></td>";
+													  echo "<td style='text-align: left;'><span style='color: #666666;'>" . $creation_date . "</span></td>";
+													  echo "<td style='text-align: left;'><span style='color: #666666;'>" . $last_updated . "</span></td>";
+													  echo "</tr>\n";
 
 												}
 										 
@@ -86,19 +91,58 @@
 
 							}else {
 								//Outputs additional data
-								//echo "Name: " . $key . " // " . $jsons_data . "\n";
+		  					  //echo "<b style='color: #009900;'>Name:</b> " . $key . " // " . $jsons_data . "<br>";
 							}
 
 					}
 
+	    			  echo "\n</table>\n";
+
 			}else {
 				//Something went wrong, outputs message
-				echo "Problem. Error: " . $JSONData['error'] . "\n";
+			  echo "<b style='color: #0099ff;'>Problem. Error:</b> [<b style='color: #ff0000;'>" . $JSONData['error'] . "</b>]<br>";
 			}
 
-			echo "\n--\n";
+		  echo "\n\t</body></html>\n";
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+			// Styles this faux html ouput
+			function html_css_style () {
+
+echo "<!DOCTYPE html>
+<!--[if IE 8]> <html lang=\"en\" class=\"ie8\"> <![endif]-->  
+<!--[if IE 9]> <html lang=\"en\" class=\"ie9\"> <![endif]-->  
+<!--[if !IE]><!--> <html lang=\"en\"> <!--<![endif]-->  
+	<head>
+		<title>Untitled Document</title>
+		<meta name=\"robots\" content=\"NOINDEX,NOFOLLOW,NOARCHIVE\">
+			<style type='text/css'>
+				.body {
+					line-height: 1.4em;
+				}
+				td {
+					border: 1px #eee solid;
+				}
+				table {
+					margin: 20px auto;
+					min-width: 80%;
+					max-width: 94%;
+				}
+				td, tr, th {
+					padding: 10px;
+					margin: 10px;
+				}
+				th {
+					background-color: #00294e;
+					color: #ff6d00;
+				}
+			</style>
+		</head>
+	<body>
+";
+
+			}
 
 ?>
