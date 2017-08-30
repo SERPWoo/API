@@ -5,7 +5,7 @@
 //
 //	This output is text format
 //
-//	Last updated - Aug 29th, 2017 @ 14:02 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 30th, 2017 @ 10:42 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjectNotes.java
 //
@@ -13,7 +13,6 @@
 //
 //	Compile Command: javac ListAllProjectNotes.java
 //	Run Command: java ListAllProjectNotes
-//
 //
 
 import org.codehaus.jackson.annotate.JsonAnyGetter;

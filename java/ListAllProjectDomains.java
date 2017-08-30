@@ -1,18 +1,18 @@
 //
-//	Github Repo: https://github.com/SERPWoo/API
+//	GitHub: https://github.com/SERPWoo/API
 //
-//	This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
+//	This code requests a project's Domains/URLs and outputs the Domain ID, Domain/URL, ORM Tag, Settings, Creation Date
 //
 //	This output is text format
 //
-//	Last updated - Aug 30th, 2017 @ 10:41 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 30th, 2017 @ 10:44 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
-//	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjects.java
+//	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjectDomains.java
 //
 //	- OR (if org.codehaus.jackson is within your Java CLASSPATH already) -
 //
-//	Compile Command: javac ListAllProjects.java
-//	Run Command: java ListAllProjects
+//	Compile Command: javac ListAllProjectDomains.java
+//	Run Command: java ListAllProjectDomains
 //
 
 import org.codehaus.jackson.annotate.JsonAnyGetter;
@@ -26,14 +26,16 @@ import java.net.URLConnection;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
-public class ListAllProjects {
+public class ListAllProjectDomains {
 
     public static void main(String[] args) {
+        // write your code here
 
 		// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
         String API_key = "API_KEY_HERE";
+        String Project_ID = "0";		// Input your Project ID (has to be string)
 
-        String output = getUrlContents("https://api.serpwoo.com/v1/projects/?key=" + API_key);
+        String output = getUrlContents("https://api.serpwoo.com/v1/projects/" + Project_ID + "/domains/?key=" + API_key);
 
         List<Row> table = new ArrayList<>(); // used to store final output
 
@@ -42,28 +44,38 @@ public class ListAllProjects {
         try {
 
             Response response = mapper.readValue(output, Response.class);
-            Iterator it = ((Map<String, Object>) response.getOther().get("projects")).entrySet().iterator();
+            Iterator it = ((Map<String, Object>)((Map<String, Object>) ((Map<String, Object>)response.getOther().get("projects")).get(Project_ID)).get("domains")).entrySet().iterator();
 
             //iterate through each entry in projects element and add required fields to the row object
             while (it.hasNext()) {
 
                 Map.Entry pair = (Map.Entry) it.next();
-                Row row = new Row();
 
-                row.setProjectId(pair.getKey().toString());
-                row.setProjectName(((Map<String, Object>) pair.getValue()).get("name").toString());
-                row.setTotalKeywords(((Map<String, Object>) ((Map<String, Object>) pair.getValue()).get("total")).get("keywords").toString());
-                row.setLinkToKeywords(((Map<String, Object>) ((Map<String, Object>) pair.getValue()).get("_links")).get("keywords").toString());
+                String tagId = pair.getKey().toString();
+                String tag =  ((Map<String, Object>) pair.getValue()).get("domain").toString();
+                String orm =  ((Map<String, Object>) pair.getValue()).get("orm").toString();
+                String creationDate =  ((Map<String, Object>) pair.getValue()).get("creation_date").toString();
 
+                String setting;
 
-                table.add(row); // insert row object into table
+                try {
+                    setting = ((Map<String,Object>) ((Map<String, Object>) pair.getValue()).get("setting")).get("type").toString();
+                } catch (Exception e) {
+                    setting = "";
+                }
+
+                    table.add(new Row(tagId, tag, orm, setting, creationDate)); // insert row object into table
+
             }
 
             //sort the table
             Collections.sort(table);
 
-            System.out.printf("%-15s%-70s%-20s%-70s\n","Project ID", "Project Name", "Total Keywords", "Link to Keywords");
-            System.out.printf("%-15s%-70s%-20s%-70s\n","----------", "------------", "--------------", "----------------");
+            System.out.printf("\n--\n");
+
+            System.out.printf("%-15s %-80s %-15s %-10s %-15s\n", "Domain ID", "Domain/URL", "ORM Tag", "Settings", "Creation Date");
+            System.out.printf("%-15s %-80s %-15s %-10s %-15s\n", "---------", "----------", "-------", "--------", "-------------");
+
             Iterator iterator = table.iterator();
 
             // print the final output to the terminal
@@ -71,6 +83,7 @@ public class ListAllProjects {
                 ((Row) iterator.next()).printRow();
             }
 
+            System.out.printf("\n--\n");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,8 +94,6 @@ public class ListAllProjects {
     private static String getUrlContents(String theUrl) {
         StringBuilder content = new StringBuilder();
 
-        // many of these calls can throw exceptions, so i've just
-        // wrapped them all in one try/catch statement.
         try {
             // create a url object
             URL url = new URL(theUrl);
@@ -107,59 +118,35 @@ public class ListAllProjects {
     }
 
     static class Row implements Comparable<Row> {
-        private String projectId; // ascending order
-        private String projectName;
-        private String totalKeywords;
-        private String linkToKeywords;
+        private String tagId;
+        private String tag;
+        private String ORMTag;
+        private String settings;
+        private String creationDate;
 
-        public String getProjectId() {
-            return projectId;
+        public Row(String tagId, String tag, String ORMTag, String settings, String creationDate) {
+            this.tagId = tagId;
+            this.tag = tag;
+            this.ORMTag = ORMTag;
+            this.settings = settings;
+            this.creationDate = creationDate;
         }
 
-        public void setProjectId(String projectId) {
-            this.projectId = projectId;
-        }
-
-        public String getProjectName() {
-            return projectName;
-        }
-
-        public void setProjectName(String projectName) {
-            this.projectName = projectName;
-        }
-
-        public String getTotalKeywords() {
-            return totalKeywords;
-        }
-
-        public void setTotalKeywords(String totalKeywords) {
-            this.totalKeywords = totalKeywords;
-        }
-
-        public String getLinkToKeywords() {
-            return linkToKeywords;
-        }
-
-        public void setLinkToKeywords(String linkToKeywords) {
-            this.linkToKeywords = linkToKeywords;
-        }
-
-        // this method is used for sorting objects
         @Override
         public int compareTo(Row o) {
-
             try {
-                return Integer.parseInt(this.projectId) - Integer.parseInt(o.projectId);
-            } catch (Exception e) {
+                return Integer.parseInt(this.tagId) -  Integer.parseInt(o.tagId);
+            } catch (Exception e ){
 
+                return 0;
             }
-            return 0;
+
         }
 
         // print object to the terminal
         public void printRow() {
 
-            System.out.printf("%-15s%-70s%-20s%-70s\n", this.projectId, this.projectName, this.totalKeywords, this.linkToKeywords);
+            System.out.printf("%-15s %-80s %-15s %-10s %-15s\n", this.tagId, this.tag, this.ORMTag, this.settings, this.creationDate);
         }
     }
 
@@ -180,30 +167,6 @@ public class ListAllProjects {
 
         public void setSuccess(String success) {
             this.success = success;
-        }
-
-        public String getTotal() {
-            return total;
-        }
-
-        public void setTotal(String total) {
-            this.total = total;
-        }
-
-        public String getResponse_time() {
-            return response_time;
-        }
-
-        public void setResponse_time(String response_time) {
-            this.response_time = response_time;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
         }
 
         public Map<String, Object> getOther() {
@@ -228,4 +191,5 @@ public class ListAllProjects {
     }
 
 }
+
 

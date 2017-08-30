@@ -5,7 +5,7 @@
 //
 //	This output is text format
 //
-//	Last updated - Aug 28th, 2017 @ 19:22 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 30th, 2017 @ 10:45 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" ListAllProjectAlerts.java
 //
@@ -32,7 +32,7 @@ public class ListAllProjectAlerts {
 
 			// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
             String API_key = "API_KEY_HERE";
-            String Project_ID = "0"; // Input your Project ID (has to be string)
+            String Project_ID = "0";		// Input your Project ID (has to be string)
 
             String output = getUrlContents("https://api.serpwoo.com/v1/projects/" + Project_ID + "/alerts/?key=" + API_key);
 

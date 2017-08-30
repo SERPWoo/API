@@ -1,9 +1,11 @@
 //
 //	GitHub: https://github.com/SERPWoo/API
 //
-//	This code requests all of your projects' data in JSON format
+//	This code requests all of your projects and outputs their ID, names, amount of keywords, and links to API query of keywords
 //
-//	Last updated - Aug 28th, 2017 @ 19:25 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	This output is text format
+//
+//	Last updated - Aug 30th, 2017 @ 10:40 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	Compile Command: javac ListAllProjectsData.java
 //	Run Command: java ListAllProjectsData
@@ -11,12 +13,7 @@
 
 import java.net.*;
 import java.io.*;
-
-/**
- * A complete Java class that demonstrates how to read content (text) from a URL
- * using the Java URL and URLConnection classes.
- * @author alvin alexander, alvinalexander.com
- */
+import org.json.*;
  
 public class ListAllProjectsData
 {
@@ -24,8 +21,14 @@ public class ListAllProjectsData
   {
 	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
   	String API_key = "API_KEY_HERE";
+
     String output  = getUrlContents("https://api.serpwoo.com/v1/projects/?key=" + API_key);
-    System.out.println(output);
+	
+	
+	JSONObject json = new JSONObject(output); // Convert text to object
+	System.out.println(json.toString(4));
+	
+    //System.out.println(output);
   }
 
   private static String getUrlContents(String theUrl)

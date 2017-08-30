@@ -5,7 +5,7 @@
 //
 //	This output is text format
 //
-//	Last updated - Aug 28th, 2017 @ 19:24 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//	Last updated - Aug 30th, 2017 @ 10:46 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	Compile Command: javac -cp "lib/jackson-all-1.9.0.jar" KeywordSERPs.java
 //
@@ -32,8 +32,8 @@ public class KeywordSERPs {
 
 			// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
             String API_key = "API_KEY_HERE";
-            String Project_ID = "0"; //input your Project ID (has to be string)
-            String Keyword_ID = "0"; //input your Keyword ID (has to be string)
+            String Project_ID = "0";	// Input your Project ID (has to be string)
+            String Keyword_ID = "0";	// Input your Keyword ID (has to be string)
 
             String output = getUrlContents("https://api.serpwoo.com/v1/serps/" + Project_ID + "/" + Keyword_ID + "/?key=" + API_key);
 
@@ -67,7 +67,7 @@ public class KeywordSERPs {
                         String url = ((Map<String, Object>)innerPair.getValue()).get("url").toString();
 
 
-                        table.add(new Row(timestamp, rank, type,title, url )); // insert row object into table
+                        table.add(new Row(timestamp, rank, type, title, url )); // insert row object into table
                     }
                     
                 }
@@ -137,46 +137,6 @@ public class KeywordSERPs {
             this.url = url;
         }
 
-        public String getTimestamp() {
-            return timestamp;
-        }
-
-        public void setTimestamp(String timestamp) {
-            this.timestamp = timestamp;
-        }
-
-        public String getRank() {
-            return rank;
-        }
-
-        public void setRank(String rank) {
-            this.rank = rank;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
         // this method is used for sorting objects
         @Override
         public int compareTo(Row o) {
@@ -209,38 +169,6 @@ public class KeywordSERPs {
 
         private Map<String, Object> other = new HashMap<String, Object>();
 
-
-        public String getSuccess() {
-            return success;
-        }
-
-        public void setSuccess(String success) {
-            this.success = success;
-        }
-
-        public String getTotal() {
-            return total;
-        }
-
-        public void setTotal(String total) {
-            this.total = total;
-        }
-
-        public String getResponse_time() {
-            return response_time;
-        }
-
-        public void setResponse_time(String response_time) {
-            this.response_time = response_time;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
 
         public Map<String, Object> getOther() {
             return other;
