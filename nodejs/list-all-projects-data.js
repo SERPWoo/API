@@ -3,7 +3,16 @@
 //
 // This code requests all of your projects' data in JSON format
 //
-// Last updated - Aug 25th, 2017 @ 7:18 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - Mar 7th, 2019 @ 10:45 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+//
+// The following modules required to be installed to run this successfully (choose between locally or globally):
+// (install locally)
+// : npm install request
+// : npm install sprintf-js
+//
+// (install globally)
+// : npm install request -g
+// : npm install sprintf-js -g
 //
 // Run Command: nodejs list-all-projects-data.js
 //
