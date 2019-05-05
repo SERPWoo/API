@@ -105,6 +105,16 @@ function PullSERPs() //Pulls the API Data
 
 	//Adds values to the sheet
 	sheet.getRange(2, 1, Final_Rows.length, Final_Rows[0].length).setValues(Final_Rows);  
+
+	//Resize Columns -- (WARNING: This increases execution time significantly, can add an additional 2-4 seconds)
+	//sheet.autoResizeColumn(1);
+	//sheet.autoResizeColumn(2);
+	//sheet.autoResizeColumn(3);
+	//sheet.autoResizeColumn(4);
+	//sheet.autoResizeColumn(5);
+	//sheet.autoResizeColumn(6);
+	//sheet.autoResizeColumn(7);
+
 }
 
 ///// Functions

@@ -74,7 +74,7 @@ function PullDomains() //Pulls the API Data
 
 					for (var domain_id in json_response.projects[project_id].domains) {
 						Logger.log("[L77] " + project_id + " = " + domain_id);
-						domain_array.push(domain_id); //gets all the alert ids into an array
+						domain_array.push(domain_id); //gets all the domain ids into an array
 						//domain_array.sort(function(a, b){return b-a}); //sorts the IDs in DESCENDING order
 						domain_array.sort(function(a, b){return a-b}); //sorts the IDs in ASCENDING order					
 					}
@@ -99,6 +99,14 @@ function PullDomains() //Pulls the API Data
 					}
 				}
 		}
+
+	//Resize Columns -- (WARNING: This increases execution time significantly, can add an additional 2-4 seconds)
+	//sheet.autoResizeColumn(1);
+	//sheet.autoResizeColumn(2);
+	//sheet.autoResizeColumn(3);
+	//sheet.autoResizeColumn(4);
+	//sheet.autoResizeColumn(5);
+
 
 }
 

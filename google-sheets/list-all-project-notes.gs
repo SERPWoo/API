@@ -77,7 +77,7 @@ function PullNotes() //Pulls the API Data
 
 					for (var note_id in json_response.projects[project_id].notes) {
 						Logger.log("[L77] " + project_id + " = " + note_id);
-						note_array.push(note_id); //gets all the alert ids into an array
+						note_array.push(note_id); //gets all the note ids into an array
 						note_array.sort(function(a, b){return json_response.projects[project_id].notes[b].note.timestamp-json_response.projects[project_id].notes[a].note.timestamp}); //sorts the IDs in DESCENDING order (usually best for most recent)
 						//note_array.sort(function(a, b){return json_response.projects[project_id].notes[a].note.timestamp-json_response.projects[project_id].notes[b].note.timestamp}); //sorts the IDs in ASCENDING order					
 					}
@@ -96,6 +96,14 @@ function PullNotes() //Pulls the API Data
 					}
 				}
 		}
+
+	//Resize Columns -- (WARNING: This increases execution time significantly, can add an additional 2-4 seconds)
+	//sheet.autoResizeColumn(1);
+	//sheet.autoResizeColumn(2);
+	//sheet.autoResizeColumn(3);
+	//sheet.autoResizeColumn(4);
+	//sheet.autoResizeColumn(5);
+	//sheet.autoResizeColumn(6);
 
 }
 

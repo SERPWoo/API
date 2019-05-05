@@ -89,6 +89,12 @@ function PullAlerts() //Pulls the API Data
 				}
 		}
 
+	//Resize Columns -- (WARNING: This increases execution time significantly, can add an additional 2-4 seconds)
+	//sheet.autoResizeColumn(1);
+	//sheet.autoResizeColumn(2);
+	//sheet.autoResizeColumn(3);
+	//sheet.autoResizeColumn(4);
+
 }
 
 ///// Functions
