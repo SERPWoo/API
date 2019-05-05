@@ -30,8 +30,6 @@ function PullVolatility() //Pulls the API Data
 
 	var json_data	= UrlFetchApp.fetch(SERPWoo_API_url).getContentText();
 	var json_response	= JSON.parse(json_data);
-	var Final_Rows		= new Array();
-	var Days_Data		= new Array();
 	var midnight_array	= new Array();
 
 		if (json_response.success != true) {
@@ -70,7 +68,7 @@ function PullVolatility() //Pulls the API Data
 					for (var keyword_id in json_response[project_id]) {
 
 						for (var midnight_time in json_response[project_id][keyword_id]) {
-							Logger.log("[L75] " + project_id + "/" + keyword_id + " = " + midnight_time);
+							//Logger.log("[L75] " + project_id + "/" + keyword_id + " = " + midnight_time);
 							midnight_array.push(midnight_time); //gets all the timeperiods into an array (this is the day's midnight time)
 							midnight_array.sort(function(a, b){return b-a}); //sorts the midnight times in DESCENDING order
 							//midnight_array.sort(function(a, b){return a-b}); //sorts the midnight times in ASCENDING order

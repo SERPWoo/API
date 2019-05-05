@@ -29,8 +29,6 @@ function PullAlerts() //Pulls the API Data
 
 	var json_data	= UrlFetchApp.fetch(SERPWoo_API_url).getContentText();
 	var json_response	= JSON.parse(json_data);
-	var Final_Rows		= new Array();
-	var Days_Data		= new Array();
 	var alert_array	= new Array();
 
 		if (json_response.success != true) {
