@@ -25,7 +25,7 @@ function PullTaggedDomains() //Pulls the API Data
 		if(sheet.getLastRow() > 1) { sheet.getRange(2, 1, sheet.getLastRow()-1 , sheet.getLastColumn()).clear(); }
 
 // *** UPDATE THIS URL TO REFLECT THE DATA YOU WANT TO CALL *** //
-	//var SERPWoo_API_url		= "https://api.serpwoo.com/v1/projects/<PROJECT_ID>/tags/?key=<API_KEY>";
+	var SERPWoo_API_url		= "https://api.serpwoo.com/v1/projects/<PROJECT_ID>/tags/?key=<API_KEY>";
 
 	var json_data	= UrlFetchApp.fetch(SERPWoo_API_url).getContentText();
 	var json_response	= JSON.parse(json_data);
