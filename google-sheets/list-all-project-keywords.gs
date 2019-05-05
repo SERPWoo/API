@@ -93,8 +93,8 @@ function PullKeywords() //Pulls the API Data
 							//sorts AlphaNumberically DESCENDING
 							//keyword_array.sort(function(a, b){ 
 							//
-							//	if (json_response.projects[project_id].keywords[a].keyword > json_response.projects[project_id].keywords[b].keyword) { return -1; }
-							//	if (json_response.projects[project_id].keywords[a].keyword < json_response.projects[project_id].keywords[b].keyword) { return 1; }
+							//	if (json_response.projects[project_id].keywords[a].keyword.toLowerCase() > json_response.projects[project_id].keywords[b].keyword.toLowerCase()) { return -1; }
+							//	if (json_response.projects[project_id].keywords[a].keyword.toLowerCase() < json_response.projects[project_id].keywords[b].keyword.toLowerCase()) { return 1; }
 							//	return 0;
 							//
 							//});
@@ -102,8 +102,8 @@ function PullKeywords() //Pulls the API Data
 							//sorts AlphaNumberically ASCENDING
 							keyword_array.sort(function(a, b){ 
 						
-								if (json_response.projects[project_id].keywords[a].keyword < json_response.projects[project_id].keywords[b].keyword) { return -1; }
-								if (json_response.projects[project_id].keywords[a].keyword > json_response.projects[project_id].keywords[b].keyword) { return 1; }
+								if (json_response.projects[project_id].keywords[a].keyword.toLowerCase() < json_response.projects[project_id].keywords[b].keyword.toLowerCase()) { return -1; }
+								if (json_response.projects[project_id].keywords[a].keyword.toLowerCase() > json_response.projects[project_id].keywords[b].keyword.toLowerCase()) { return 1; }
 								return 0;
 						
 							});
