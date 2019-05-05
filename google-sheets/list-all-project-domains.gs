@@ -1,11 +1,11 @@
 //
 // GitHub: https://github.com/SERPWoo/API
 //
-// This code requests a project's Notes and outputs the Note ID, Note Timestamp, Note Social Time, Note Type, Note Message, Note Last Updated
+// This code requests a project's Domains/URLs and outputs the Domain ID, Domain/URL, ORM Tag, Settings, Creation Date
 //
 // This outputs to the Google Sheet
 //
-// Last updated - May 5th, 2019 @ 6:50 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - May 5th, 2019 @ 7:40 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 //	Instructions:
 //	1. use the "Script Editor", under Tools, when inside a blank spreadsheet.
@@ -16,7 +16,7 @@
 //
 //
 
-function PullNotes() //Pulls the API Data
+function PullDomains() //Pulls the API Data
 {
 	//Finds current active Sheet
 	var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -25,11 +25,11 @@ function PullNotes() //Pulls the API Data
 		if(sheet.getLastRow() > 1) { sheet.getRange(2, 1, sheet.getLastRow()-1 , sheet.getLastColumn()).clear(); }
 
 // *** UPDATE THIS URL TO REFLECT THE DATA YOU WANT TO CALL *** //
-	var SERPWoo_API_url	= "https://api.serpwoo.com/v1/projects/<PROJECT_ID>/notes/?key=<API_KEY>";	
+	var SERPWoo_API_url	= "https://api.serpwoo.com/v1/projects/<PROJECT_ID>/domains/?key=<API_KEY>";	
 
 	var json_data	= UrlFetchApp.fetch(SERPWoo_API_url).getContentText();
 	var json_response	= JSON.parse(json_data);
-	var note_array		= new Array();
+	var domain_array		= new Array();
 
 		if (json_response.success != true) {
 			//Something went wrong with the API call
@@ -48,26 +48,23 @@ function PullNotes() //Pulls the API Data
 
 		}else {
 			//Update Header (Row #1)
-			sheet.getRange(1, 1).setValue('Note ID');
-			sheet.getRange(1, 2).setValue('Timestamp');
-			sheet.getRange(1, 3).setValue('Social Timestamp');
-			sheet.getRange(1, 4).setValue('Type');
-			sheet.getRange(1, 5).setValue('Note');
-			sheet.getRange(1, 6).setValue('Last Updated');
+			sheet.getRange(1, 1).setValue('Domain ID');
+			sheet.getRange(1, 2).setValue('Domain/URL');
+			sheet.getRange(1, 3).setValue('ORM Tag');
+			sheet.getRange(1, 4).setValue('Settings');
+			sheet.getRange(1, 5).setValue('Creation Date');
 
 			sheet.getRange(1, 1).setBackground("#000000");
 			sheet.getRange(1, 2).setBackground("#000000");
 			sheet.getRange(1, 3).setBackground("#000000");
 			sheet.getRange(1, 4).setBackground("#000000");
 			sheet.getRange(1, 5).setBackground("#000000");
-			sheet.getRange(1, 6).setBackground("#000000");
 
 			sheet.getRange(1, 1).setFontColor('white');
 			sheet.getRange(1, 2).setFontColor('white');
 			sheet.getRange(1, 3).setFontColor('white');
 			sheet.getRange(1, 4).setFontColor('white');
 			sheet.getRange(1, 5).setFontColor('white');
-			sheet.getRange(1, 6).setFontColor('white');
 		}
 
 
@@ -75,24 +72,30 @@ function PullNotes() //Pulls the API Data
 
 				if( typeof(json_response.projects[project_id]) === "object" ) {
 
-					for (var note_id in json_response.projects[project_id].notes) {
-						Logger.log("[L77] " + project_id + " = " + note_id);
-						note_array.push(note_id); //gets all the alert ids into an array
-						note_array.sort(function(a, b){return json_response.projects[project_id].notes[b].note.timestamp-json_response.projects[project_id].notes[a].note.timestamp}); //sorts the IDs in DESCENDING order (usually best for most recent)
-						//note_array.sort(function(a, b){return json_response.projects[project_id].notes[a].note.timestamp-json_response.projects[project_id].notes[b].note.timestamp}); //sorts the IDs in ASCENDING order					
+					for (var domain_id in json_response.projects[project_id].domains) {
+						Logger.log("[L77] " + project_id + " = " + domain_id);
+						domain_array.push(domain_id); //gets all the alert ids into an array
+						//domain_array.sort(function(a, b){return b-a}); //sorts the IDs in DESCENDING order
+						domain_array.sort(function(a, b){return a-b}); //sorts the IDs in ASCENDING order					
 					}
 
 					//Write data to Sheet by rows
-					for (var j = 0 ; j < note_array.length ; ++j) {
-						the_note_id = note_array[j];
+					for (var j = 0 ; j < domain_array.length ; ++j) {
+						the_domain_id = domain_array[j];
 
 						//Adds values to the sheet
-						sheet.getRange((j+2), 1).setValue(the_note_id);  
-						sheet.getRange((j+2), 2).setValue(json_response.projects[project_id].notes[the_note_id].note.timestamp);  
-						sheet.getRange((j+2), 3).setValue(json_response.projects[project_id].notes[the_note_id].note.social_time);  
-						sheet.getRange((j+2), 4).setValue(json_response.projects[project_id].notes[the_note_id].type);  
-						sheet.getRange((j+2), 5).setValue(json_response.projects[project_id].notes[the_note_id].note.message);
-						sheet.getRange((j+2), 6).setValue(FROM_UNIX_EPOCH(json_response.projects[project_id].notes[the_note_id].last_updated));
+						sheet.getRange((j+2), 1).setValue(the_domain_id);  
+						sheet.getRange((j+2), 2).setValue(json_response.projects[project_id].domains[the_domain_id].domain);
+						sheet.getRange((j+2), 3).setValue(json_response.projects[project_id].domains[the_domain_id].orm);
+
+						//Whether this is an exact URL or just monitoring the whole domain
+						if ((json_response.projects[project_id].domains[the_domain_id].setting.type !== undefined) && (json_response.projects[project_id].domains[the_domain_id].setting.type !== null)) {
+							sheet.getRange((j+2), 4).setValue(json_response.projects[project_id].domains[the_domain_id].setting.type);  							
+						}else {
+							sheet.getRange((j+2), 4).setValue('domain');
+						}
+
+						sheet.getRange((j+2), 5).setValue(FROM_UNIX_EPOCH(json_response.projects[project_id].domains[the_domain_id].creation_date));
 					}
 				}
 		}
@@ -102,7 +105,7 @@ function PullNotes() //Pulls the API Data
 ///// Functions
 //Creates a Menu that can be called
 function onOpen() {
-	SpreadsheetApp.getUi().createMenu("[ SERPWoo Script ]").addItem("Pull Notes", "PullNotes").addToUi(); 
+	SpreadsheetApp.getUi().createMenu("[ SERPWoo Script ]").addItem("Pull Domains", "PullDomains").addToUi(); 
 }
 
 //Converts EPOCH Time into a human readable date
