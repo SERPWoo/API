@@ -2,7 +2,7 @@
 //
 // GitHub: https://github.com/SERPWoo/API
 //
-// This code requests a project's keywords and outputs the Keyword ID, Keyword, PPC Comp, OCI, Volume, CPC (USD), created date, oldest date, recent date, Link To SERPs
+// This code requests a project's Domains/URLs and outputs the Domain ID, Domain/URL, ORM Tag, Settings, Creation Date
 //
 // (For Javascript/Ajax calls)
 //
@@ -18,7 +18,8 @@
 		$API_key = "API_KEY_HERE";
 		$Project_ID = 0; //input your Project ID
 
-		$requestURL = "https://api.serpwoo.com/v1/projects/" . $Project_ID . "/keywords/?key=" . $API_key;
+
+		$requestURL = "https://api.serpwoo.com/v1/projects/" . $Project_ID . "/domains/?key=" . $API_key;
 
 	// Use Curl to get the request
 		$options = array(

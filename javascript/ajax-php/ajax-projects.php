@@ -6,7 +6,7 @@
 //
 // (For Javascript/Ajax calls)
 //
-// Last updated - Aug 25th, 2017 @ 11:00 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+// Last updated - May 6th, 2019 @ 9:05 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
 //
 // Run: (use javascript/ script in parent folder)
 //
@@ -14,7 +14,7 @@
 	//outputs data in JSON format
 		header('Content-type: application/json');
 
-	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 		$API_key = "API_KEY_HERE";
 
 		$requestURL = "https://api.serpwoo.com/v1/projects/?key=" . $API_key;
