@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+
+		<!--
+		//
+		// Github Repo: https://github.com/SERPWoo/API
+		//
+		//  This is a javascript sample code that uses AJAX to call a variation of the
+		//  "list-all-projects-data" (You can use any coding language that outputs data
+		//  through your web server - php is the default in the sample code);
+		//
+		//  This code requests a project's Alerts and outputs the Alert ID, Social Timestamp, Alert Text, Alert Link
+		//
+		//  Last updated - Aug 25th, 2017 @ 12:05 EST (@MercenaryCarter https://github.com/MercenaryCarter and https://twitter.com/MercenaryCarter)
+		//
+		-->
+
+	<head>
+		<title>Untitled Document</title>
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE">
+			<style type='text/css'>
+				.body {
+					line-height: 1.4em;
+				}
+				#data_table {					
+					margin: 20px auto;
+				}
+				td {
+					border: 1px #eee solid;
+				}
+				table {
+					margin: 0px auto;
+					min-width: 80%;
+					max-width: 94%;
+				}
+				td, tr, th {
+					padding: 10px;
+					margin: 10px;
+				}
+				th {
+					background-color: #00294e;
+					color: #ff6d00;
+				}
+			</style>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('#data_table').html("<table><tr><th>Alert ID</th><th>Social Timestamp</th><th>Alert Text</th><th>Alert Link</th></tr>");
+
+			    $.ajax({
+			      url: 'ajax-php/ajax-project-alerts.php', //Customize this to your ajax (You can download the /ajax-php/ folder to get started - add your API Key to each)
+			      type: 'POST',
+				  async:false,
+			      cache: false,
+					success: function( jsonData, textStatus, XMLHttpRequest ) {
+						
+						  if (jsonData.hasOwnProperty('success')) {
+
+							  if (jsonData['success'] == 1) {
+
+			  	  						for (var project_id in jsonData['projects']) {
+				  	  						  if (jsonData['projects'].hasOwnProperty(project_id)) {
+
+		  			  	  						for (var alert_id in jsonData['projects'][project_id]['alerts']) {
+		  				  	  						  if (jsonData['projects'][project_id]['alerts'].hasOwnProperty(alert_id)) {
+												  
+														  $('#data_table table tbody').append("<tr>");
+														  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #0099ff;'>" + alert_id + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: center;'><span style='color: #ff0099;'>" + jsonData['projects'][project_id]['alerts'][alert_id]['social_time'] + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: left;'><span style='color: #009900;'>" + jsonData['projects'][project_id]['alerts'][alert_id]['text'] + "</span></td>");
+														  $('#data_table table tbody').append("<td style='text-align: left;'><span style='color: #0099ff;'>" + jsonData['projects'][project_id]['alerts'][alert_id]['link'] + "</span></td>");
+														  $('#data_table table tbody').append("</tr>");
+													  }
+												  }
+
+				  							  }
+									  	}							  	
+
+							  }else {
+		  						$('#data_table table').append("<tr><td colspan='4' style='text-align: center;'>Something went wrong: " + jsonData['error'] + "</td></tr>");
+							  }
+
+						}
+
+					},
+					error: function( XMLHttpRequest, textStatus, errorThrown ) {
+  						$('#data_table table').append("<tr><td colspan='4' style='text-align: center;'>Could not communication with ajax script: " + textStatus + "</td></tr>");							  	
+					}
+			    });
+
+				$('#data_table').append("</table>");
+
+				
+			});
+		</script>
+
+		</head>
+	<body>
+
+<div id="data_table"></div>
+
+</body></html>
