@@ -57,7 +57,7 @@ func main() {
 		}
 
 		for _, v := range alert_ids {
-			fmt.Printf("%-15d %-20s %-100s %-80s\n", v, output[v].Social_Time, output[v].Text, output[v].Link, )
+			fmt.Printf("%-15d %-20s %-100s %-80s\n", v, output[v].Social_Time, output[v].Text, output[v].Link)
 		}
 
 	fmt.Printf("\n--\n")
