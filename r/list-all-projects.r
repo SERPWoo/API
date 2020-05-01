@@ -18,7 +18,7 @@
 
 	options(width=1200)
 
-		# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+		# Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 		API_Key = "API_KEY_HERE"
 
 	url = paste0("https://api.serpwoo.com/v1/projects/")

@@ -18,7 +18,7 @@
 
 		options(width=1200)
 
-	# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	# Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 	API_Key = "API_KEY_HERE"
 	Project_ID = 0 #input your Project ID
 
