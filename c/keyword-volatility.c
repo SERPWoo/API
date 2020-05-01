@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 	json_char* json_objects;
     	json_value *json_data;
 
-	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 	char* API_key = "API_KEY_HERE";
 	int Project_ID = 0; //Input your Project ID
 	int Keyword_ID = 0; //Input your Keyword ID

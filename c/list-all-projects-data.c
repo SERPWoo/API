@@ -36,7 +36,7 @@
 int main(int argc, char* argv[]) {
     char* data;
 	
-	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 	char* API_key = "API_KEY_HERE";
 
 	char* request_url = "https://api.serpwoo.com/v1/projects/?key=";
