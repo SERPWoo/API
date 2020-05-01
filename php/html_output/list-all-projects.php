@@ -13,7 +13,7 @@
 	//outputs data in text/html format
 		header('Content-type: text/html');
 
-	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 		$API_key = "API_KEY_HERE";
 
 		$requestURL = "https://api.serpwoo.com/v1/projects/?key=" . $API_key;
