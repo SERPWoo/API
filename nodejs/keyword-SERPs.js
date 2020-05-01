@@ -22,7 +22,7 @@
 	var request = require("request");
 	var sprintf=require("sprintf-js").sprintf;
 
-	// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+	// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 	var API_key = "API_KEY_HERE"
 	var Project_ID = 0 //input your Project ID
 	var Keyword_ID = 0 //input your Keyword ID

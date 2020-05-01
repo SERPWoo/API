@@ -21,7 +21,7 @@
 
 	#outputs data in JSON format
 
-		# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+		# Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 			my $API_key = "API_KEY_HERE";
 
 			my $Project_ID = PROJECT_ID_HERE; #Integer, example = 12345

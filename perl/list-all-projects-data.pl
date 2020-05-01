@@ -20,7 +20,7 @@
 	#outputs data in JSON format
     print "Content-type: application/json\n\n";
 
-		# Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+		# Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
 			my $API_key = "API_KEY_HERE";
 			my %JSON_DATA;
 	
