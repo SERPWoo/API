@@ -30,7 +30,7 @@ public class KeywordSERPs {
 
     public static void main(String[] args) {
 
-			// Get your API Key here: https://www.serpwoo.com/v3/api/ (should be logged in)
+			// Get your API Key here: https://www.serpwoo.com/q/api/ (should be logged in)
             String API_key = "API_KEY_HERE";
             String Project_ID = "0";	// Input your Project ID (has to be string)
             String Keyword_ID = "0";	// Input your Keyword ID (has to be string)
